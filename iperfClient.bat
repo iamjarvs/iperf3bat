@@ -8,27 +8,27 @@ IF NOT EXIST Lib\grep.exe ECHO could NOT find grep.exe. A CSV log will not be ge
 IF NOT EXIST Lib\sed.exe ECHO could NOT find sed.exe. A CSV log will not be generated.
 
 :SETUP
-SET SERVER="localhost"
-SET PORT=5001
+SET SERVER="iperf.hyperoptic.com"
+SET PORT=5210
 SET TCPWIN="128k"
 SET FORMAT="m"
-SET INTERVAL=15
-SET TESTLEN=1
+SET INTERVAL=10
+SET TESTLEN=60
 SET UDP=n
-SET LOGFILE=logfile
+SET LOGFILE=C:\logfile
 SET GREPCMD="Mbits/sec$"
 SET SEDCMD="s/sec//g; s/MBytes//g; s#Mbits/##g; s/-[ ]/-/g; s/[ ]\+/,/g; s/$/\r/g"
 
-SET /P LOGFILE=Enter in a logfile name (w/o extension): 
-IF EXIST "%LOGFILE%.log" GOTO OVERWRITELOG
-:CONTINUE
-SET /P SERVER=Enter in the iPerf server's IP address: 
-SET /P PORT=Enter a port to run on (%PORT%): 
-SET /P UDP=Run UDP test (y/N): 
-SET /P TESTLEN=Enter test duration in minutes (%TESTLEN%): 
-SET /P INTERVAL=Enter the output interval in seconds (%INTERVAL%): 
+REMSET /P LOGFILE=Enter in a logfile name (w/o extension): 
+REMIF EXIST "%LOGFILE%.log" GOTO OVERWRITELOG
+REM:CONTINUE
+REM SET /P SERVER=Enter in the iPerf server's IP address: 
+REM SET /P PORT=Enter a port to run on (%PORT%): 
+REM SET /P UDP=Run UDP test (y/N): 
+REM SET /P TESTLEN=Enter test duration in minutes (%TESTLEN%): 
+REM SET /P INTERVAL=Enter the output interval in seconds (%INTERVAL%): 
 
-SET /A TESTLEN *= 60
+REM SET /A TESTLEN *= 60
 
 ECHO Test started on %DATE% %TIME%
 start Lib\tail.exe -F "%LOGFILE%.log"
@@ -52,9 +52,9 @@ del "%LOGFILE%.tmp"
 GOTO END
 
 :OVERWRITELOG
-SET ANS=n
-ECHO ** "%LOGFILE%.log" already exists.  Would you like to overwrite this file?
-SET /P ANS=   (y/N): 
+SET ANS=y
+REM ECHO ** "%LOGFILE%.log" already exists.  Would you like to overwrite this file?
+REM SET /P ANS=   (y/N): 
 IF "%ANS%"=="n" GOTO SETUP
 IF "%ANS%"=="N" GOTO SETUP
 IF "%ANS%"=="y" del "%LOGFILE%.log" & GOTO CONTINUE
