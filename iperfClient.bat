@@ -28,10 +28,10 @@ REM SET /A TESTLEN *= 60
 
 ECHO Test started on %DATE% %TIME%
 
-IF %UDP% == n iperf.exe -c %SERVER% -p %PORT% -d -w %TCPWIN% -f %FORMAT% -i %INTERVAL% -t %TESTLEN% >> "%LOGFILE%.log"
-IF %UDP% == N iperf.exe -c %SERVER% -p %PORT% -d -w %TCPWIN% -f %FORMAT% -i %INTERVAL% -t %TESTLEN% >> "%LOGFILE%.log"
-IF %UDP% == y iperf.exe -c %SERVER% -p %PORT% -d -u -w %TCPWIN% -f %FORMAT% -i %INTERVAL% -t %TESTLEN%  >> "%LOGFILE%.log"
-IF %UDP% == Y iperf.exe -c %SERVER% -p %PORT% -d -u -w %TCPWIN% -f %FORMAT% -i %INTERVAL% -t %TESTLEN%  >> "%LOGFILE%.log"
+IF %UDP% == n C:\iperf-3\iperf.exe -c %SERVER% -p %PORT% -d -w %TCPWIN% -f %FORMAT% -i %INTERVAL% -t %TESTLEN%
+IF %UDP% == N C:\iperf-3\iperf.exe -c %SERVER% -p %PORT% -d -w %TCPWIN% -f %FORMAT% -i %INTERVAL% -t %TESTLEN%
+IF %UDP% == y C:\iperf-3\iperf.exe -c %SERVER% -p %PORT% -d -u -w %TCPWIN% -f %FORMAT% -i %INTERVAL% -t %TESTLEN%
+IF %UDP% == Y C:\iperf-3\iperf.exe -c %SERVER% -p %PORT% -d -u -w %TCPWIN% -f %FORMAT% -i %INTERVAL% -t %TESTLEN%
 
 :END
 ECHO Done
