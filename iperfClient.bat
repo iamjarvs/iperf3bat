@@ -19,14 +19,14 @@ SET LOGFILE=C:\logfile
 SET GREPCMD="Mbits/sec$"
 SET SEDCMD="s/sec//g; s/MBytes//g; s#Mbits/##g; s/-[ ]/-/g; s/[ ]\+/,/g; s/$/\r/g"
 
-REMSET /P LOGFILE=Enter in a logfile name (w/o extension): 
-REMIF EXIST "%LOGFILE%.log" GOTO OVERWRITELOG
-REM:CONTINUE
-REM SET /P SERVER=Enter in the iPerf server's IP address: 
-REM SET /P PORT=Enter a port to run on (%PORT%): 
-REM SET /P UDP=Run UDP test (y/N): 
-REM SET /P TESTLEN=Enter test duration in minutes (%TESTLEN%): 
-REM SET /P INTERVAL=Enter the output interval in seconds (%INTERVAL%): 
+@REM  SET /P LOGFILE=Enter in a logfile name (w/o extension): 
+@REM IF EXIST "%LOGFILE%.log" GOTO OVERWRITELOG
+@REM :CONTINUE
+@REM  SET /P SERVER=Enter in the iPerf server's IP address: 
+@REM SET /P PORT=Enter a port to run on (%PORT%): 
+@REM  SET /P UDP=Run UDP test (y/N): 
+@REM  SET /P TESTLEN=Enter test duration in minutes (%TESTLEN%): 
+@REM  SET /P INTERVAL=Enter the output interval in seconds (%INTERVAL%): 
 
 REM SET /A TESTLEN *= 60
 
@@ -53,8 +53,8 @@ GOTO END
 
 :OVERWRITELOG
 SET ANS=y
-REM ECHO ** "%LOGFILE%.log" already exists.  Would you like to overwrite this file?
-REM SET /P ANS=   (y/N): 
+@REM  ECHO ** "%LOGFILE%.log" already exists.  Would you like to overwrite this file?
+@REM  SET /P ANS=   (y/N): 
 IF "%ANS%"=="n" GOTO SETUP
 IF "%ANS%"=="N" GOTO SETUP
 IF "%ANS%"=="y" del "%LOGFILE%.log" & GOTO CONTINUE
