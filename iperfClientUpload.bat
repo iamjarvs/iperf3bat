@@ -6,7 +6,7 @@
 @REM the path for the iperf3.exe needs to be 'C:\iperf-3\iperf3.exe' or change path in line 22
 
 :SETUP
-SET SERVER="iperf.hyperoptic.com"
+SET SERVER="iperf server address or DNS"
 SET PORT=5210
 SET TCPWIN="128k"
 SET FORMAT="m"
