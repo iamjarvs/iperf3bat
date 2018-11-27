@@ -1,14 +1,15 @@
 @ECHO off
 @REM iperf-client
 @REM Connects to the iperf-server host and begins data transfer.
-@REM Updated 2008-02-13
+@REM Credit matthewlinton - original repo - https://github.com/matthewlinton/Windows-Scripts/blob/master/iPerf/iperf-client.bat
+@REM Updated 27-11-2018
 
 :SETUP
 SET SERVER="iperf.hyperoptic.com"
 SET PORT=5210
 SET TCPWIN="128k"
 SET FORMAT="m"
-SET INTERVAL=10
+SET INTERVAL=5
 SET TESTLEN=60
 SET UDP=n
 SET LOGFILE=C:\logfile
@@ -28,11 +29,12 @@ REM SET /A TESTLEN *= 60
 
 ECHO Test started on %DATE% %TIME%
 
-IF %UDP% == n C:\iperf-3\iperf.exe -c %SERVER% -p %PORT% -d -w %TCPWIN% -f %FORMAT% -i %INTERVAL% -t %TESTLEN%
-IF %UDP% == N C:\iperf-3\iperf.exe -c %SERVER% -p %PORT% -d -w %TCPWIN% -f %FORMAT% -i %INTERVAL% -t %TESTLEN%
-IF %UDP% == y C:\iperf-3\iperf.exe -c %SERVER% -p %PORT% -d -u -w %TCPWIN% -f %FORMAT% -i %INTERVAL% -t %TESTLEN%
-IF %UDP% == Y C:\iperf-3\iperf.exe -c %SERVER% -p %PORT% -d -u -w %TCPWIN% -f %FORMAT% -i %INTERVAL% -t %TESTLEN%
+IF %UDP% == n C:\iperf-3\iperf3.exe -c %SERVER% -p %PORT% -d -w %TCPWIN% -f %FORMAT% -i %INTERVAL% -t %TESTLEN%
+IF %UDP% == N C:\iperf-3\iperf3.exe -c %SERVER% -p %PORT% -d -w %TCPWIN% -f %FORMAT% -i %INTERVAL% -t %TESTLEN%
+IF %UDP% == y C:\iperf-3\iperf3.exe -c %SERVER% -p %PORT% -d -u -w %TCPWIN% -f %FORMAT% -i %INTERVAL% -t %TESTLEN%
+IF %UDP% == Y C:\iperf-3\iperf3.exe -c %SERVER% -p %PORT% -d -u -w %TCPWIN% -f %FORMAT% -i %INTERVAL% -t %TESTLEN%
 
 :END
 ECHO Done
 PAUSE
+@pause
